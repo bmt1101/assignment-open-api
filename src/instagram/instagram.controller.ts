@@ -1,12 +1,17 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import { InstagramScraperService } from './instagram.service';
+import { InstagramService } from './instagram.service';
 
 @Controller('instagram')
-export class InstagramScraperController {
-  constructor(private readonly instagramScraperService: InstagramScraperService) {}
+export class InstagramController {
+  constructor(private readonly instagramService: InstagramService) {}
 
-  @Get('followers/:username')
-  async getFollowers(@Param('username') username: string) {
-    return this.instagramScraperService.getFollowers(username);
+  @Get('following/:username')
+  async getFollowing(@Param('username') username: string) {
+    try {
+      const following = await this.instagramService.getFollowing(username);
+      return following;
+    } catch (error) {
+      return { message: 'Error fetching data from Instagram API', error: error.message };
+    }
   }
 }
