@@ -1,14 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
-import { lastValueFrom } from 'rxjs';
+import { AxiosResponse } from 'axios';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable()
 export class InstagramScraperService {
+  private readonly baseUrl = 'https://instagram-scraper-api2.p.rapidapi.com'; 
+
   constructor(private readonly httpService: HttpService) {}
 
-  async getFollowers(username: string): Promise<any> {
-    const url = `https://instagram-scraper-api2.p.rapidapi.com/v1/followers?username_or_id_or_url=${username}`;
-
+  async getInstagramReels(username: string): Promise<any> {
+    const url = `/v1.2/reels?username_or_id_or_url=${username}`;
     const options = {
       headers: {
         'x-rapidapi-key': 'c93ff496c3mshe9af35514327d60p156637jsn40c86fd4ced1',
@@ -17,10 +19,11 @@ export class InstagramScraperService {
     };
 
     try {
-      const response = await lastValueFrom(this.httpService.get(url, options));
+      const response: AxiosResponse = await firstValueFrom(this.httpService.get(this.baseUrl + url, options));
       return response.data;
     } catch (error) {
-      throw new Error('Error fetching followers data');
+      console.error('Error fetching Instagram data:', error.message || error);
+      throw new Error('Failed to fetch Instagram data');
     }
   }
 }

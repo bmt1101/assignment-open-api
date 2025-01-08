@@ -1,12 +1,12 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { InstagramScraperService } from './instagram.service';
 
-@Controller('instagram')
+@Controller('instagram-scraper')
 export class InstagramScraperController {
   constructor(private readonly instagramScraperService: InstagramScraperService) {}
 
-  @Get('followers/:username')
-  async getFollowers(@Param('username') username: string) {
-    return this.instagramScraperService.getFollowers(username);
+  @Get(':username')
+  async getReels(@Param('username') username: string) {
+    return this.instagramScraperService.getInstagramReels(username);
   }
 }
