@@ -1,11 +1,10 @@
 import { Module } from '@nestjs/common';
-import { InstagramScraperService } from './instagram.service';
-import { InstagramScraperController } from './instagram.controller';
-import { HttpModule } from '@nestjs/axios';
+import { InstagramService } from './instagram.service';
+import { InstagramController } from './instagram.controller';
 
 @Module({
-  imports: [HttpModule],
-  controllers: [InstagramScraperController],
-  providers: [InstagramScraperService],
+  imports: [],
+  controllers: [InstagramController],
+  providers: [InstagramService],
 })
-export class InstagramScraperModule {}
+export class InstagramModule {}
