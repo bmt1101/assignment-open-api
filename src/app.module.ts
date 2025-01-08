@@ -1,7 +1,9 @@
 import { Module } from '@nestjs/common';
-import { InstagramScraperModule } from './instagram/instagram.module';
+import { InstagramModule } from './instagram/instagram.module';
 
 @Module({
-  imports: [InstagramScraperModule],
+  imports: [InstagramModule],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}

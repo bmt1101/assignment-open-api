@@ -1,15 +1,15 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { InstagramScraperController } from './instagram.controller';
+import { InstagramController } from './instagram.controller';
 
 describe('InstagramController', () => {
-  let controller: InstagramScraperController;
+  let controller: InstagramController;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      controllers: [InstagramScraperController],
+      controllers: [InstagramController],
     }).compile();
 
-    controller = module.get<InstagramScraperController>(InstagramScraperController);
+    controller = module.get<InstagramController>(InstagramController);
   });
 
   it('should be defined', () => {
